@@ -26,7 +26,7 @@ pipeline {
                 }
 
  // JAR 파일 빌드 단계 추가
-        stage('Build JAR') {
+        stage('Build JAR..') {
             steps {
                 script {
                     withEnv(['JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64']) {
