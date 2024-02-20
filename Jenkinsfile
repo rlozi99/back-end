@@ -33,17 +33,17 @@ pipeline {
             }
         }
 
-        // stage('SonarQube Analysis') {
-        //     steps {
-        //         script {
-        //             def scannerHome = tool 'sonarqube_scanner'
-        //             withSonarQubeEnv('SonarQubeServer') {
-        //                 // SonarScanner 실행 명령에 -X 옵션 추가
-        //                 sh "${scannerHome}/bin/sonar-scanner -X"
-        //             }
-        //         }
-        //     }
-        // }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'sonarqube_scanner'
+                    withSonarQubeEnv('SonarQubeServer') {
+                        // SonarScanner 실행 명령에 -X 옵션 추가
+                        sh "${scannerHome}/bin/sonar-scanner -X"
+                    }
+                }
+            }
+        }
         
         // JAR 파일 빌드 단계 추가
         stage('Build JAR') {
