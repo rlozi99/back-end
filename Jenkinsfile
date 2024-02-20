@@ -24,17 +24,17 @@ pipeline {
             }
         }
 
-        // stage('SonarQube Analysis') {
-        //     steps {
-        //         script {
-        //             def scannerHome = tool 'sonarqube_scanner'
-        //             withSonarQubeEnv('SonarQubeServer') {
-        //                 // SonarScanner 실행 명령에 -X 옵션 추가
-        //                 sh "${scannerHome}/bin/sonar-scanner -X"
-        //             }
-        //         }
-        //     }
-        // }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'sonarqube_scanner'
+                    withSonarQubeEnv('SonarQubeServer') {
+                        // SonarScanner 실행 명령에 -X 옵션 추가
+                        sh "${scannerHome}/bin/sonar-scanner -X"
+                    }
+                }
+            }
+        }
         stage('Grant Execute Permission to Gradle Wrapper') {
                     steps {
                         sh 'chmod +x ./gradlew'
@@ -64,12 +64,12 @@ pipeline {
         //             }
         //         }
 
-        stage('Trivy Security') {
-              steps {
-                  sh 'chmod +x trivy-image-scan.sh' // 스크립트에 실행 권한 추가
-                  sh './trivy-image-scan.sh' // Trivy 이미지 스캔 실행
-              }
-        }
+        // stage('Trivy Security') {
+        //       steps {
+        //           sh 'chmod +x trivy-image-scan.sh' // 스크립트에 실행 권한 추가
+        //           sh './trivy-image-scan.sh' // Trivy 이미지 스캔 실행
+        //       }
+        // }
 
         stage('Build and Push Docker Image to ACR') {
             steps {
