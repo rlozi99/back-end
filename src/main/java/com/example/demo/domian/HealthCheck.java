@@ -19,7 +19,7 @@ public class HealthCheck {
     @Column(
             name = "name",
             nullable = false,
-            length = 20
+            length = 21
     )
     private String name;
     @Column(
